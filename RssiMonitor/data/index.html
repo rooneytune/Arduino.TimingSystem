@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<meta charset="utf-8" />
+<title>WebSocket Test</title>
+
+<script language="javascript" type="text/javascript">
+
+    var url = "ws://192.168.4.1:1337/";
+    var output;
+    var button;
+    var canvas;
+    var context;
+    var distanceSelect;
+    var timeCtl;
+
+    // This is called when the page finishes loading
+    function init() {
+
+        // Assign page elements to variables
+        button = document.getElementById("toggleButton");
+        output = document.getElementById("output");
+        canvas = document.getElementById("led");
+        timeCtl = document.getElementById("serverTime");
+
+        distanceSelect = document.getElementById("distanceSelect");
+
+        // Draw circle in canvas
+        context = canvas.getContext("2d");
+        context.arc(25, 25, 15, 0, Math.PI * 2, false);
+        context.lineWidth = 3;
+        context.strokeStyle = "black";
+        context.stroke();
+        context.fillStyle = "black";
+        context.fill();
+
+        // Connect to WebSocket server
+        wsConnect(url);
+    }
+
+    // Call this to connect to the WebSocket server
+    function wsConnect(url) {
+
+        // Connect to WebSocket server
+        websocket = new WebSocket(url);
+
+        // Assign callbacks
+        websocket.onopen = function (evt) { onOpen(evt) };
+        websocket.onclose = function (evt) { onClose(evt) };
+        websocket.onmessage = function (evt) { onMessage(evt) };
+        websocket.onerror = function (evt) { onError(evt) };
+    }
+
+    // Called when a WebSocket connection is established with the server
+    function onOpen(evt) {
+
+        // Log connection state
+        console.log("Connected");
+
+        // Enable button
+        button.disabled = false;
+
+        // Get the current state of the LED
+        doSend("rssiSettings_getFormState");
+    }
+
+    // Called when the WebSocket connection is closed
+    function onClose(evt) {
+
+        // Log disconnection state
+        console.log("Disconnected");
+
+        // Disable button
+        button.disabled = true;
+
+        // Try to reconnect after a few seconds
+        setTimeout(function () { wsConnect(url) }, 2000);
+    }
+
+    // Called when a message is received from the server
+    function onMessage(evt) {
+
+        // Print out our received message
+        console.log("Received: " + evt.data);
+
+        obj = JSON.parse(evt.data);
+
+        console.log("Json object created - Item count:" + Object.keys(obj).length);
+
+        var ledState = obj["ledState"];
+        console.log("LED State: " + ledState);
+
+
+        var distance = obj["distance"];
+        console.log("Distance value: " + distance);
+
+        // Update circle graphic with LED state
+        switch (ledState) {
+            case 0:
+                console.log("LED is off");
+                context.fillStyle = "black";
+                context.fill();
+                break;
+            case 1:
+                console.log("LED is on");
+                context.fillStyle = "red";
+                context.fill();
+                break;
+            default:
+                break;
+        }
+
+        //Set distance selection
+        distanceSelect.value = distance;
+
+        //Set time
+        var serverTimeValue = obj["serverTime"];
+        console.log("serverTime value: " + serverTimeValue);
+        console.log("TimeCtl current value: " + timeCtl.innerHtml);
+        timeCtl.innerHtml = serverTimeValue;
+
+    }
+
+    // Called when a WebSocket error occurs
+    function onError(evt) {
+        console.log("ERROR: " + evt.data);
+    }
+
+    // Sends a message to the server (and prints it to the console)
+    function doSend(message) {
+        console.log("Sending: " + message);
+        websocket.send(message);
+    }
+
+    // Called whenever the HTML button is pressed
+    function onPress() {
+        doSend("rssiSettings_toggleLED");
+       // doSend("rssiSettings_getFormState");
+    }
+
+    // Called whenever the 'distance' selection is updated
+    function distanceUpdated(value) {
+
+        console.log("Distance selection changed: " + value);
+        //var e = document.getElementById("distanceSelect");
+        //var selectedValue = e.value;
+
+        doSend("rssiSettings_distanceUpdated=" + value);
+       // doSend("rssiSettings_getFormState");
+    }
+
+    function clearResultLog() {
+        doSend("rssiSettings_ClearResultLog");
+       // doSend("rssiSettings_getFormState");
+    }
+
+    function sendCurrentDateTime() {
+        var d = new Date();
+
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
+        var currentDateTime = date.toString() + '-' + time.toString();
+
+        console.log("Current Time: " + currentDateTime);
+
+        doSend("rssiSettings_setCurrentDateTime=" + currentDateTime);
+
+        doSend("rssiSettings_getFormState");
+    }
+
+    // Call the init function as soon as the page loads
+    window.addEventListener("load", init, false);
+
+
+</script>
+
+<h2>Signal Strength Recorder / Settings</h2>
+<p>
+    Server Time Stamp:
+<p id="serverTime">Not Set</p>
+<p>
+    <input type="button" onclick="sendCurrentDateTime()" value="Set Time" />
+<p>
+    <input type="button" onclick="clearResultLog()" value="Clear Result Log" />
+<p>
+    <table>
+        <tr>
+            <td><button id="toggleButton" onclick="onPress()" disabled>Toggle Record</button></td>
+            <td><canvas id="led" width="50" height="50"></canvas></td>
+        </tr>
+        <tr>
+            <td>Distance:</td>
+            <td>
+                <select name="distanceSelect" id="distanceSelect" onchange="distanceUpdated(this.value)">
+                    <option value="0">0</option>
+                    <option value="0.5">0.5</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                    <option value="6">6</option>
+                    <option value="8">8</option>
+                    <option value="10">10</option>
+                    <option value="+5 to -5">+5 to -5</option>
+                    <option value="+10 to -10">+10 to -10 </option>
+                </select>
+            </td>
+        </tr>
+    </table>
+<p>
+    <input type="button" onclick="location.href='rssiResults.html';" value="Go to results" />

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{4ec47f7b-813d-4e3f-b6d8-5c18851c13b5}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="$(MSBuildThisFileDirectory)readme.txt" />
+    <Text Include="$(MSBuildThisFileDirectory)library.properties" />
+    <Text Include="$(MSBuildThisFileDirectory)src\dc_common.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- <ClInclude Include="$(MSBuildThisFileDirectory)common.h" /> -->
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\dc_EventManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\dc_networkUtil.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\dc_StringUtil.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\displayRefreshHandler.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\eventTiming\displayRefreshHandler.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\systemTime\timeUtil.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\timeUtil.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\dc_common.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\dc_EventManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\dc_networkUtil.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\dc_StringUtil.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\displayRefreshHandler.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\eventTiming\displayRefreshHandler.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\systemTime\timeUtil.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\timeUtil.cpp" />
+  </ItemGroup>
+</Project>

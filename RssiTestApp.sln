@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RssiMonitor", "RssiMonitor\RssiMonitor.vcxproj", "{C5F80730-F44F-4478-BDAE-6634EFC2CA88}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "common", "common\common.vcxitems", "{4EC47F7B-813D-4E3F-B6D8-5C18851C13B5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Arduino_JSON-master-0.1.0", "..\..\Users\matt_\OneDrive\Documents\Arduino\libraries\Arduino_JSON-master\Arduino_JSON-master-0.1.0.vcxitems", "{5A7CAE71-F3E8-49B3-9788-CF6370221F65}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "arduinoWebSockets-master-2.3.5", "..\..\Users\matt_\OneDrive\Documents\Arduino\libraries\arduinoWebSockets-master\arduinoWebSockets-master-2.3.5.vcxitems", "{BC92C81E-9F23-4786-945C-465646F1EDEF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ESPAsyncWebServer-master-1.2.3", "..\..\Users\matt_\OneDrive\Documents\Arduino\libraries\ESPAsyncWebServer-master\ESPAsyncWebServer-master-1.2.3.vcxitems", "{5EB52553-DA24-4A9C-B414-409A254B7FD4}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SPIFFS-1.0", "..\..\Users\matt_\AppData\Local\arduino15\packages\esp32\hardware\esp32\1.0.4\libraries\SPIFFS\SPIFFS-1.0.vcxitems", "{763267E2-FE40-41EE-B047-F42B848789C5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AccessPoint", "AccessPoint\AccessPoint\AccessPoint.vcxitems", "{D6D5E959-8323-4AED-B6FD-22A1F34DB41C}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		common\common.vcxitems*{4ec47f7b-813d-4e3f-b6d8-5c18851c13b5}*SharedItemsImports = 9
+		..\..\Users\matt_\OneDrive\Documents\Arduino\libraries\Arduino_JSON-master\Arduino_JSON-master-0.1.0.vcxitems*{5a7cae71-f3e8-49b3-9788-cf6370221f65}*SharedItemsImports = 9
+		..\..\Users\matt_\OneDrive\Documents\Arduino\libraries\ESPAsyncWebServer-master\ESPAsyncWebServer-master-1.2.3.vcxitems*{5eb52553-da24-4a9c-b414-409a254b7fd4}*SharedItemsImports = 9
+		..\..\Users\matt_\AppData\Local\arduino15\packages\esp32\hardware\esp32\1.0.4\libraries\SPIFFS\SPIFFS-1.0.vcxitems*{763267e2-fe40-41ee-b047-f42b848789c5}*SharedItemsImports = 9
+		..\..\Users\matt_\OneDrive\Documents\Arduino\libraries\arduinoWebSockets-master\arduinoWebSockets-master-2.3.5.vcxitems*{bc92c81e-9f23-4786-945c-465646f1edef}*SharedItemsImports = 9
+		AccessPoint\AccessPoint\AccessPoint.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+		common\common.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+		..\..\Users\matt_\AppData\Local\arduino15\packages\esp32\hardware\esp32\1.0.4\libraries\SPIFFS\SPIFFS-1.0.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+		..\..\Users\matt_\OneDrive\Documents\Arduino\libraries\arduinoWebSockets-master\arduinoWebSockets-master-2.3.5.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+		..\..\Users\matt_\OneDrive\Documents\Arduino\libraries\Arduino_JSON-master\Arduino_JSON-master-0.1.0.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+		..\..\Users\matt_\OneDrive\Documents\Arduino\libraries\ESPAsyncWebServer-master\ESPAsyncWebServer-master-1.2.3.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|x86.ActiveCfg = Debug|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|x86.Build.0 = Debug|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x86.ActiveCfg = Release|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09A6A3EB-18A6-4DD1-ADAC-16C33F7E6D7B}
+	EndGlobalSection
+EndGlobal
